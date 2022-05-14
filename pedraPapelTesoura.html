@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>[PEDRA][PAPEL][TESOURA]]</title>
+    </head>
+    <body>
+
+        <table border="0" width="100%">
+            <tr>
+
+                <td width="50%">
+
+                    <h1>[PEDRA][PAPEL][TESOURA]</h1>
+                    <h2 id=t_texto></h2>
+
+
+                    
+                    <h3>********************************************************************</h3>
+                    <div class="sessao">
+                        <h1>   EU   </h1>
+                        <h2 id="eu_pontos">0</h2>
+                        <div class="aqui_class">
+                            <i class="aqui"></i>
+                            <h2 id="s1"></h2>
+                        </div>
+                    </div>
+                    <h3>********************************************************************</h3>
+
+
+                </td>
+
+                <td width="50%">
+                    
+
+                    <h3>********************************************************************</h3>
+                    <div class="sessao">
+                        <h1>   MAQUINA   </h1>
+                        <h2 id="maquinas_pontos">0</h2>
+                        </div>
+                        <div class="aqui_class computer">
+                            <i class="aqui"></i>
+                            <h2 id="s2"></h2>
+                        </div>
+                    </div>
+                    <h3>********************************************************************</h3>
+
+
+
+                </td>
+
+            </tr>
+        </table>
+
+
+
+        <h2 style="color: rgb(233, 33, 19);" id=t_texto>CLICK EM UM BOTÃO</h2>
+        
+        <div class="C_botoes">
+            <button style="font-size:200%" class="pedra" id="pedra">PEDRA</button>
+            <button style="font-size:200%" class="papel" id="papel">PAPEL</button>
+            <button style="font-size:200%" class="tesoura" id="tesoura">TESOURA</button>
+        </div>
+
+        <script>
+
+
+
+            
+            var maquinas_pontos = 1;
+            var eu_pontos = 1;
+            const p_eu = document.getElementById('eu_pontos');
+            const p_maquinas = document.getElementById('maquinas_pontos');
+            const botoes = document.querySelectorAll('.C_botoes button');
+            const pega_eu = document.querySelector('.aqui_class i');
+            const pega_pc = document.querySelector('.computer i');
+            const random = ["pedra", "papel", "tesoura"];
+            const texto01 = document.getElementById('t_texto');
+            const texto02 = document.getElementById('z_texte');
+
+            const texto_h2_01 = document.getElementById('s1');
+            const texto_h2_02 = document.getElementById('s2');
+
+
+            botoes.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+
+                    var clickedBtn = e.target.className;
+                    pega_eu.className = clickedBtn;
+                    texto_h2_01.textContent = clickedBtn;
+                    var randomNum = Math.floor(Math.random() * random.length);
+                    pega_pc.className = random[randomNum];
+                    texto_h2_02.textContent = random[randomNum];
+
+
+                    if (pega_eu.className === pega_pc.className) {
+                        p_eu.innerHTML = p_eu.innerHTML;
+                        p_maquinas.innerHTML = p_maquinas.innerHTML;
+                        texto01.innerHTML = "ENPATE";
+                        texto01.style.color = 'blue';
+
+                    }
+
+                    else if (pega_eu.className === random[0] && pega_pc.className === random[2]) {
+                        p_eu.innerHTML = eu_pontos;
+                        eu_pontos++;
+                        texto01.innerHTML = "VOCÊ GANHOU";
+                        texto01.style.color = 'rgb(1, 146, 1)';
+
+                    } else if (pega_eu.className === random[0] && pega_pc.className === random[1]) {
+                        p_maquinas.innerHTML = maquinas_pontos;
+                        maquinas_pontos++;
+                        texto01.innerHTML = "VOCÊ PERDEU";
+                        texto01.style.color = 'red';
+
+                    } else if (pega_eu.className === random[1] && pega_pc.className === random[2]) {
+                        p_maquinas.innerHTML = maquinas_pontos;
+                        maquinas_pontos++;
+                        texto01.innerHTML = "VOCÊ PERDEU";
+                        texto01.style.color = 'red';
+
+                    } else if (pega_eu.className === random[1] && pega_pc.className === random[0]) {
+                        p_eu.innerHTML = eu_pontos;
+                        eu_pontos++;
+                        texto01.innerHTML = "VOCÊ GANHOU";
+                        texto01.style.color = 'rgb(1, 146, 1)';
+
+                    } else if (pega_eu.className === random[2] && pega_pc.className === random[0]) {
+                        p_maquinas.innerHTML = maquinas_pontos;
+                        maquinas_pontos++;
+                        texto01.innerHTML = "VOCÊ PERDEU";
+                        texto01.style.color = 'red';
+
+                    } else if (pega_eu.className === random[2] && pega_pc.className === random[1]) {
+                        p_eu.innerHTML = eu_pontos;
+                        eu_pontos++;
+                        texto01.innerHTML = "VOCÊ GANHOU";
+                        texto01.style.color = 'rgb(1, 146, 1)';
+
+                    }
+                });
+            });
+
+
+        </script>
+    </body>
+</html>
